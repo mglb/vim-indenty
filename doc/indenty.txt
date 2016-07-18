@@ -61,7 +61,7 @@ g:indenty_modelines			(default: &|modelines|)
 						*g:indenty_blacklist*
 g:indenty_blacklist			(default: ['help', 'man', '', 'make'])
 			'filetype's for which automatic detection is not
-			triggered. *IndentyDetect()* still works.
+			triggered. |IndentyDetect()| still works.
 
 						*g:indenty_min_lines*
 g:indenty_min_lines			(default: 4)
@@ -87,7 +87,7 @@ COMMANDS					*indenty-commands*
 
 						*IndentyDetect()*
 IndentyDetect()
-			Triggers detection. The *g:indenty_blacklist* setting
+			Triggers detection. The |g:indenty_blacklist| setting
 			is ignored.
 
 
