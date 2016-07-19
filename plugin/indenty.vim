@@ -54,7 +54,7 @@ function! s:IndentyMsg(indents, with_last_msg)
         " info message, re-display the message with additional info.
         redraw
         redir => s:messages
-        messages
+        silent! messages
         redir END
         let s:last_msg=get(split(s:messages, "\n"), -1, '')
 
