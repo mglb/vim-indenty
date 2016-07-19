@@ -154,6 +154,7 @@ class Scanner:
 
 
     def _scan_line(self, line):
+        line += '\0' # HACK: handle whitespace-only lines
         info = LineInfo()
         ws_c = None
 
