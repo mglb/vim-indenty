@@ -179,7 +179,31 @@ class Scanner:
                     state = START
             elif state == IN_WHITESPACE:
                 if line[i] != ws_c:
-                    ws.end = i
+                    # FIXME: WORKAROUND:
+                    # In a files with multiline C-like comments where stars
+                    # are aligned vertically, there is one additional space.
+                    # This results in invalid one-space width detected in
+                    # a files with large amount of comments (documentation).
+                    #
+                    # The comment looks like:
+                    # /*
+                    #  *  <- +1 space!
+                    #  */ <- +1 space!
+                    #
+                    # For now, ignore additional space if the indent width
+                    # is odd. This should break only real odd-width space
+                    # indents where a lot of multiplication is moved to
+                    # a following line.
+                    #
+                    # It would be better to detect common line continuation
+                    # patterns (like ',' at the end of a line, block comments,
+                    # etc) and fix detected values.
+                    if (ws_c == ' ' and line[i] == '*'
+                            and (i - ws.begin) % 2 != 0):
+                        ws.end = i - 1
+                    else:
+                        ws.end = i
+
                     info.whitespaces.append(ws)
                     if ws_c == ' ':  # For spaces, search for indents only
                         break
