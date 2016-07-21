@@ -112,13 +112,8 @@ class Scanner:
                 else:
                     prev_whitespaces = []
 
-            else:
-                prev_rel_w = 0
-                prev_w = 0
-
-            prev_info = info
-
             if info.kind != Indents.UNKNOWN:
+                prev_info = info
                 scores[info.kind][0] += 1
 
         spaces_score = scores[Indents.SPACES][0]
