@@ -4,13 +4,20 @@ try:
 except ImportError:
     vim = object()
 
-def detect():
+
+scanner = None
+
+
+def vim_init():
+    global scanner
     scanner = Scanner()
     scanner.modelines = int(vim.eval('g:indenty_modelines'))
     scanner.tabstop_priority = vim.eval('g:indenty_tabstop_priority')
     scanner.min_lines = int(vim.eval('g:indenty_min_lines'))
     scanner.max_lines = int(vim.eval('g:indenty_max_lines'))
 
+
+def detect():
     indents = scanner.scan(vim.current.buffer)
 
     # Let VimL part know what happened

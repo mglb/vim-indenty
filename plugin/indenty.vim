@@ -24,6 +24,7 @@ exec s:py."import vim, sys"
 exec s:py."plugin_path = vim.eval('expand(\"<sfile>:h\")') + '/../python'"
 exec s:py."sys.path.append(plugin_path)"
 exec s:py."import indenty"
+exec s:py."indenty.vim_init()"
 
 " User functions
 
