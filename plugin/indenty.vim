@@ -21,8 +21,6 @@ let g:indenty_onload = get(g:, 'indenty_onload', 1)
 " Load python part
 
 exec s:py."import vim, sys"
-exec s:py."plugin_path = vim.eval('expand(\"<sfile>:h\")') + '/../python'"
-exec s:py."sys.path.append(plugin_path)"
 exec s:py."import indenty"
 exec s:py."indenty.vim_init()"
 

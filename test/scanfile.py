@@ -3,7 +3,7 @@ import sys
 import os
 
 SELF_DIR = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(SELF_DIR + '/../python')
+sys.path.append(SELF_DIR + '/../pythonx')
 
 from indenty.scanner import Scanner, Indents
 
