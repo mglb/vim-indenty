@@ -67,7 +67,7 @@ class Scanner:
         }
         prev_w = 0
         prev_rel_w = 0
-        prev_info = []
+        prev_info = _LineInfo()
 
         for line in lines[:self.max_lines]:
             info = self._scan_line(line)
