@@ -4,8 +4,10 @@ endif
 let g:loaded_indenty = 1
 
 let s:py="py "
+let s:pyfile="pyfile "
 if has('python3')
     let s:py="py3 "
+    let s:pyfile="py3file "
 endif
 
 " Default settings
@@ -20,9 +22,8 @@ let g:indenty_onload = get(g:, 'indenty_onload', 1)
 
 " Load python part
 
-exec s:py."import vim, sys"
-exec s:py."import indenty"
-exec s:py."indenty.vim_init()"
+let s:python_dir = resolve(expand('<sfile>:h').'/../pythonx/')
+exec s:pyfile.s:python_dir.'/indenty.py'
 
 " User functions
 
