@@ -1,23 +1,27 @@
 import vim
 from indenty.scanner import Scanner, Indents
 
+
 scanner = Scanner()
-scanner.modelines = int(vim.eval('g:indenty_modelines'))
-scanner.tabstop_priority = vim.eval('g:indenty_tabstop_priority')
-scanner.min_lines = int(vim.eval('g:indenty_min_lines'))
-scanner.max_lines = int(vim.eval('g:indenty_max_lines'))
+
+scanner.modelines           = vim.vars['indenty_modelines']
+scanner.tabstop_priority    = vim.vars['indenty_tabstop_priority']
+scanner.min_lines           = vim.vars['indenty_min_lines']
+scanner.max_lines           = vim.vars['indenty_max_lines']
+
 
 def detect():
-    indents = scanner.scan(vim.current.buffer)
-
-    # Let VimL part know what happened
-    vim.command("let indents = [%u, %u]" % (indents.kind, indents.width))
+    b = vim.current.buffer
+    indents = scanner.scan(b)
 
     # Set options if detected
     if indents.kind == Indents.SPACES:
-        vim.command("setlocal et")
+        b.options['et']     = True
     elif indents.kind == Indents.TABS:
-        vim.command("setlocal noet")
+        b.options['et']     = False
     if indents.width > 0:
-        vim.command("setlocal sw={0} ts={0} sts={0}".format(indents.width))
+        b.options['sw']     = indents.width
+        b.options['ts']     = indents.width
+        b.options['sts']    = indents.width
 
+    return vim.List([indents.kind, indents.width])

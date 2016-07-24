@@ -3,11 +3,12 @@ if !(has ('python') || has('python3')) || &compatible || exists("g:loaded_indent
 endif
 let g:loaded_indenty = 1
 
-let s:py="py "
-let s:pyfile="pyfile "
 if has('python3')
-    let s:py="py3 "
     let s:pyfile="py3file "
+    let s:Py=function("py3eval")
+else
+    let s:pyfile="pyfile "
+    let s:Py=function("pyeval")
 endif
 
 " Default settings
@@ -28,7 +29,7 @@ exec s:pyfile.s:python_dir.'/indenty.py'
 " User functions
 
 function! IndentyDetect()
-    exec s:py."indenty.detect()"
+    let indents = s:Py('detect()')
 
     if indents[0] != 0 && g:indenty_show_msg
         call s:IndentyMsg(indents, 0)
@@ -77,7 +78,7 @@ function! s:IndentyAutoDetect()
         endif
     endfor
 
-    exec s:py."indenty.detect()"
+    let indents = s:Py('detect()')
 
     if indents[0] != 0 && g:indenty_show_msg
         call s:IndentyMsg(indents, 1)
