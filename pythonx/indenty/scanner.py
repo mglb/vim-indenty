@@ -17,7 +17,7 @@ class Location:
         self.end = end
 
 
-class LineInfo:
+class _LineInfo:
     def __init__(self, kind=Indents.UNKNOWN):
         self.kind = kind
         self.whitespaces = []
@@ -103,7 +103,7 @@ class Scanner:
                         prev_cols = prev_info.tab_columns_pos(ts)
                         cols = info.tab_columns_pos(ts)
 
-                        if LineInfo.cmp_columns_pos(prev_cols, cols):
+                        if _LineInfo.cmp_columns_pos(prev_cols, cols):
                             if ts not in scores[Indents.TABS]:
                                 scores[Indents.TABS][ts] = 0
                             scores[Indents.TABS][ts] += 1
@@ -150,7 +150,7 @@ class Scanner:
 
     def _scan_line(self, line):
         line += '\0' # HACK: handle whitespace-only lines
-        info = LineInfo()
+        info = _LineInfo()
         ws_c = None
 
         START, START_ONE_SPACE, ONE_SPACE, IN_WHITESPACE, IN_TEXT = range(0, 5)
