@@ -21,6 +21,7 @@ let g:indenty_max_lines = get(g:, 'indenty_max_lines', 1024)
 let g:indenty_show_msg = get(g:, 'indenty_show_msg', 1)
 let g:indenty_onload = get(g:, 'indenty_onload', 1)
 let g:indenty_msg_as_warning = get(g:, 'indenty_msg_as_warning', 1)
+let g:indenty_msg_detailed = get(g:, 'indenty_msg_detailed', 0)
 
 " Load python part
 
@@ -40,16 +41,6 @@ endfunc
 " Autoload and messages
 
 function! s:IndentyMsg(indents, with_last_msg)
-    let s:kind_str = 'spaces'
-    if a:indents[0] == 2
-        let s:kind_str = 'tabs'
-    endif
-
-    let s:width_str = ''
-    if a:indents[1] > 0
-        let s:width_str = ' ('.a:indents[1].')'
-    endif
-
     let s:last_msg = ''
     if a:with_last_msg
         " Instead of getting the 'press ENTER...' or removing the default file
@@ -69,7 +60,23 @@ function! s:IndentyMsg(indents, with_last_msg)
     if g:indenty_msg_as_warning
       echohl WarningMsg
     endif
-    echo s:last_msg.'indenty: '.s:kind_str.s:width_str
+
+    if g:indenty_msg_detailed
+      echo s:last_msg.'indenty: '.(&et?'et':'noet').',ts='.&ts.',sw='.&sw
+    else
+      let s:kind_str = 'spaces'
+      if a:indents[0] == 2
+          let s:kind_str = 'tabs'
+      endif
+
+      let s:width_str = ''
+      if a:indents[1] > 0
+          let s:width_str = ' ('.a:indents[1].')'
+      endif
+
+      echo s:last_msg.'indenty: '.s:kind_str.s:width_str
+    endif
+
     if g:indenty_msg_as_warning
       echohl None
     endif

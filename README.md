@@ -45,6 +45,7 @@ Vim with Python 3. Python 2 might work, it is not tested yet.
 `g:indenty_show_msg`         | boolean | Specifies whether to show message with detected settings.
 `g:indenty_onload`           | boolean | When on, the file is scanned automatically when it is opened.
 `g:indenty_msg_as_warning`   | boolean | When on, message is displayed as a warning.
+`g:indenty_msg_detailed`     | boolean | When on, instead of simple description - all vim settings related to indents are shown.
 
 Defaults:
 
