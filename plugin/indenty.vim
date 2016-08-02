@@ -20,6 +20,7 @@ let g:indenty_min_lines = get(g:, 'indenty_min_lines', 4)
 let g:indenty_max_lines = get(g:, 'indenty_max_lines', 1024)
 let g:indenty_show_msg = get(g:, 'indenty_show_msg', 1)
 let g:indenty_onload = get(g:, 'indenty_onload', 1)
+let g:indenty_msg_as_warning = get(g:, 'indenty_msg_as_warning', 1)
 
 " Load python part
 
@@ -65,9 +66,13 @@ function! s:IndentyMsg(indents, with_last_msg)
     endif
 
     redraw
-    echohl WarningMsg
+    if g:indenty_msg_as_warning
+      echohl WarningMsg
+    endif
     echo s:last_msg.'indenty: '.s:kind_str.s:width_str
-    echohl None
+    if g:indenty_msg_as_warning
+      echohl None
+    endif
 endfunc
 
 
