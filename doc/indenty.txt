@@ -72,15 +72,24 @@ g:indenty_min_lines			(default: 4)
 g:indenty_max_lines			(default: 1024)
 			The maximum number of lines that are scanned.
 
+						*g:indenty_onload*
+g:indenty_onload			(default: 1)
+			When on, the file is scanned automatically when it is
+			opened.
+
 						*g:indenty_show_msg*
 g:indenty_show_msg			(default: 1)
 			Specifies whether to show message with detected
 			settings.
 
-						*g:indenty_onload*
-g:indenty_onload			(default: 1)
-			When on, the file is scanned automatically when it is
-			opened.
+						*g:indenty_msg_hl*
+g:indenty_msg_hl			(default: 'WarningMsg')
+			The message highlight group.
+
+						*g:indenty_detailed_msg*
+g:indenty_detailed_msg			(default: 0)
+			When on, instead of simple description - all vim
+			settings related to indents are shown.
 
 ==============================================================================
 COMMANDS					*indenty-commands*

@@ -18,10 +18,10 @@ let g:indenty_modelines = get(g:, 'indenty_modelines', &modelines)
 let g:indenty_blacklist = get(g:, 'indenty_blacklist', ['', 'make'])
 let g:indenty_min_lines = get(g:, 'indenty_min_lines', 4)
 let g:indenty_max_lines = get(g:, 'indenty_max_lines', 1024)
-let g:indenty_show_msg = get(g:, 'indenty_show_msg', 1)
 let g:indenty_onload = get(g:, 'indenty_onload', 1)
-let g:indenty_msg_as_warning = get(g:, 'indenty_msg_as_warning', 1)
-let g:indenty_msg_detailed = get(g:, 'indenty_msg_detailed', 0)
+let g:indenty_show_msg = get(g:, 'indenty_show_msg', 1)
+let g:indenty_msg_hl = get(g:, 'indenty_msg_hl', 'WarningMsg')
+let g:indenty_detailed_msg = get(g:, 'indenty_detailed_msg', 0)
 
 " Load python part
 
@@ -57,12 +57,12 @@ function! s:IndentyMsg(indents, with_last_msg)
     endif
 
     redraw
-    if g:indenty_msg_as_warning
-        echohl WarningMsg
+    if !empty(g:indenty_msg_hl)
+        exec 'echohl '.g:indenty_msg_hl
     endif
 
     if g:indenty_detailed_msg
-        echo s:last_msg.'indenty: '.(&et?'et':'noet').',ts='.&ts.',sw='.&sw
+        echo s:last_msg.'indenty: '.(&et?'et':'noet').' ts='.&ts.' sts='.&sts.' sw='.&sw
     else
         let s:kind_str = 'spaces'
         if a:indents[0] == 2
@@ -77,9 +77,7 @@ function! s:IndentyMsg(indents, with_last_msg)
         echo s:last_msg.'indenty: '.s:kind_str.s:width_str
     endif
 
-    if g:indenty_msg_as_warning
-        echohl None
-    endif
+    echohl None
 endfunc
 
 

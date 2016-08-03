@@ -42,10 +42,10 @@ Vim with Python 3. Python 2 might work, it is not tested yet.
 `g:indenty_blacklist`        | list    | Filetypes for which **automatic** detection is not triggered. `IndentyDetect()` still works.
 `g:indenty_min_lines`        | number  | The minimum number of indented lines required to set detected settings.
 `g:indenty_max_lines`        | number  | The maximum number of lines that are scanned.
-`g:indenty_show_msg`         | boolean | Specifies whether to show message with detected settings.
 `g:indenty_onload`           | boolean | When on, the file is scanned automatically when it is opened.
-`g:indenty_msg_as_warning`   | boolean | When on, message is displayed as a warning.
-`g:indenty_msg_detailed`     | boolean | When on, instead of simple description - all vim settings related to indents are shown.
+`g:indenty_show_msg`         | boolean | Specifies whether to show message with detected settings.
+`g:indenty_msg_hl`           | string  | The message highlight group.
+`g:indenty_detailed_msg`     | boolean | When on, instead of simple description - all vim settings related to indents are shown.
 
 Defaults:
 
@@ -55,8 +55,10 @@ g:indenty_modelines         = &modelines
 g:indenty_blacklist         = ['help', 'man', '', 'make']
 g:indenty_min_lines         = 4
 g:indenty_max_lines         = 1024
-g:indenty_show_msg          = 1
 g:indenty_onload            = 1
+g:indenty_show_msg          = 1
+g:indenty_msg_hl            = 'WarningMsg'
+g:indenty_detailed_msg      = 0
 ```
 
 ## Commands
