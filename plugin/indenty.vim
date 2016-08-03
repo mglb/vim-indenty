@@ -58,27 +58,27 @@ function! s:IndentyMsg(indents, with_last_msg)
 
     redraw
     if g:indenty_msg_as_warning
-      echohl WarningMsg
+        echohl WarningMsg
     endif
 
-    if g:indenty_msg_detailed
-      echo s:last_msg.'indenty: '.(&et?'et':'noet').',ts='.&ts.',sw='.&sw
+    if g:indenty_detailed_msg
+        echo s:last_msg.'indenty: '.(&et?'et':'noet').',ts='.&ts.',sw='.&sw
     else
-      let s:kind_str = 'spaces'
-      if a:indents[0] == 2
-          let s:kind_str = 'tabs'
-      endif
+        let s:kind_str = 'spaces'
+        if a:indents[0] == 2
+            let s:kind_str = 'tabs'
+        endif
 
-      let s:width_str = ''
-      if a:indents[1] > 0
-          let s:width_str = ' ('.a:indents[1].')'
-      endif
+        let s:width_str = ''
+        if a:indents[1] > 0
+            let s:width_str = ' ('.a:indents[1].')'
+        endif
 
-      echo s:last_msg.'indenty: '.s:kind_str.s:width_str
+        echo s:last_msg.'indenty: '.s:kind_str.s:width_str
     endif
 
     if g:indenty_msg_as_warning
-      echohl None
+        echohl None
     endif
 endfunc
 
