@@ -38,12 +38,12 @@ class _LineInfo:
         return pos_list
 
 
-    def cmp_columns_pos(a, b):
-        for i in range(0, min(len(a), len(b))):
-            if a[i] != b[i]:
-                return False
+def cmp_columns_pos(a, b):
+    for i in range(0, min(len(a), len(b))):
+        if a[i] != b[i]:
+            return False
 
-        return True
+    return True
 
 
 class Scanner:
@@ -103,7 +103,7 @@ class Scanner:
                         prev_cols = prev_info.tab_columns_pos(ts)
                         cols = info.tab_columns_pos(ts)
 
-                        if _LineInfo.cmp_columns_pos(prev_cols, cols):
+                        if cmp_columns_pos(prev_cols, cols):
                             if ts not in scores[Indents.TABS]:
                                 scores[Indents.TABS][ts] = 0
                             scores[Indents.TABS][ts] += 1
