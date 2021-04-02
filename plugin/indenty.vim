@@ -1,4 +1,4 @@
-if !(has ('python') || has('python3')) || &compatible || exists("g:loaded_indenty")
+if !(has('python3') || has('python')) || &compatible || exists("g:loaded_indenty")
     finish
 endif
 let g:loaded_indenty = 1
